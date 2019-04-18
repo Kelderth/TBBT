@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZeO-tx-EH3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LogIn-->
+        <scene sceneID="56T-Hw-Q92">
+            <objects>
+                <viewController id="rfL-kb-Xw6" customClass="LoginViewController" customModule="TheBigBangTheory" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="20P-ug-9xd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cXF-b1-pUn">
+                                <rect key="frame" x="60" y="144" width="255" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fr8-0R-dZ9">
+                                <rect key="frame" x="60" y="214" width="255" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R07-Xw-qN2">
+                                <rect key="frame" x="60" y="567" width="255" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Fjj-MC-Roq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <action selector="userAuthenticity:" destination="rfL-kb-Xw6" eventType="touchUpInside" id="3ze-zs-2P7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K7-zu-gH3">
+                                <rect key="frame" x="80" y="252" width="215" height="30"/>
+                                <state key="normal" title="Sign in with TouchID"/>
+                                <connections>
+                                    <action selector="activateTouchID:" destination="rfL-kb-Xw6" eventType="touchUpInside" id="dC6-fu-PeT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80351027397260277" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fr8-0R-dZ9" firstAttribute="top" secondItem="cXF-b1-pUn" secondAttribute="bottom" constant="40" id="CPB-3L-h1P"/>
+                            <constraint firstItem="fr8-0R-dZ9" firstAttribute="leading" secondItem="Idb-F0-IeC" secondAttribute="leading" constant="60" id="EAs-yS-mZo"/>
+                            <constraint firstItem="Idb-F0-IeC" firstAttribute="trailing" secondItem="0K7-zu-gH3" secondAttribute="trailing" constant="80" id="LJM-s8-8gU"/>
+                            <constraint firstItem="0K7-zu-gH3" firstAttribute="leading" secondItem="Idb-F0-IeC" secondAttribute="leading" constant="80" id="LQ3-sI-Fi9"/>
+                            <constraint firstItem="Idb-F0-IeC" firstAttribute="bottom" secondItem="R07-Xw-qN2" secondAttribute="bottom" constant="60" id="MOd-fG-ejs"/>
+                            <constraint firstItem="cXF-b1-pUn" firstAttribute="top" secondItem="Idb-F0-IeC" secondAttribute="top" constant="80" id="Nzi-YP-76Q"/>
+                            <constraint firstItem="Idb-F0-IeC" firstAttribute="trailing" secondItem="fr8-0R-dZ9" secondAttribute="trailing" constant="60" id="nw3-4F-Ag3"/>
+                            <constraint firstItem="R07-Xw-qN2" firstAttribute="leading" secondItem="Idb-F0-IeC" secondAttribute="leading" constant="60" id="q06-7v-QZ6"/>
+                            <constraint firstItem="Idb-F0-IeC" firstAttribute="trailing" secondItem="cXF-b1-pUn" secondAttribute="trailing" constant="60" id="q3A-Ar-GxQ"/>
+                            <constraint firstItem="Idb-F0-IeC" firstAttribute="trailing" secondItem="R07-Xw-qN2" secondAttribute="trailing" constant="60" id="syt-Zb-V1n"/>
+                            <constraint firstItem="0K7-zu-gH3" firstAttribute="top" secondItem="fr8-0R-dZ9" secondAttribute="bottom" constant="8" id="vmQ-2z-QKy"/>
+                            <constraint firstItem="cXF-b1-pUn" firstAttribute="leading" secondItem="Idb-F0-IeC" secondAttribute="leading" constant="60" id="zMd-DI-QPu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Idb-F0-IeC"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="LogIn" id="pMW-u9-aql"/>
+                    <connections>
+                        <outlet property="passwordLabel" destination="fr8-0R-dZ9" id="yGX-8N-mhd"/>
+                        <outlet property="touchIDButton" destination="0K7-zu-gH3" id="kpu-cR-Beu"/>
+                        <outlet property="usernameLabel" destination="cXF-b1-pUn" id="VU7-86-bZB"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="userVerified" id="J5R-fG-vyF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i4v-4H-Yh4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1105" y="-636"/>
+        </scene>
+        <!--The Big Bang Theory-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ShowViewController" customModule="TheBigBangTheory" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="The Big Bang Theory" id="XOs-vN-10R">
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="KJQ-8S-ZB0">
+                            <connections>
+                                <action selector="endSession:" destination="BYZ-38-t0r" id="jtD-70-cWh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2006" y="-636"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EaG-OD-m2N">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZeO-tx-EH3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4PZ-k4-BKL">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rfL-kb-Xw6" kind="relationship" relationship="rootViewController" id="Hd2-Gq-dD9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5tX-27-cYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="328.80000000000001" y="-635.53223388305855"/>
+        </scene>
+    </scenes>
+</document>
