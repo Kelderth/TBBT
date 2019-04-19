@@ -12,7 +12,7 @@ import LocalAuthentication
 class BiometricRecognition {
     let authenticationContext = LAContext()
     var authError: NSError?
-    let reason: String = "TouchID / FaceID Login"
+    let reason: String = "Access to the app using your TouchID"
     
     enum WarningReason: String {
         case hardwareUnavailable = "Biometry unavailable"
@@ -21,7 +21,7 @@ class BiometricRecognition {
     
     enum WarningMessage: String {
         case hardwareUnavailable = "Your device is not configured for biometric authentication"
-        case authenticationFail = "You could not be verified; please try again."
+        case authenticationFail = "You could not be verified with TouchID; please try again."
     }
     
     func authenticationProcess(completion: @escaping (Bool, String?, String?) -> Void) {
@@ -31,7 +31,7 @@ class BiometricRecognition {
                     if loginSuccess {
                         completion(loginSuccess,nil,nil)
                     } else {
-                        completion(false, WarningReason.authenticationFail.rawValue, WarningMessage.authenticationFail.rawValue)
+                        completion(false, nil, nil)
                     }
                 })
             } else {
