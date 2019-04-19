@@ -9,12 +9,14 @@
 import UIKit
 
 class LoginViewModel {
+    let bsLogin = BiometricRecognition()
+    
     private let username: String = "admin"
     private let password: String = "admin"
     
     private enum LoginWarnings: String {
-        case missedValue = "Username or Password dismissed."
-        case mismatchValues = "Username or Password not Valid."
+        case missedValue = "Username or Password not found."
+        case mismatchValues = "Invalid Credentials."
     }
     
     static let shared = LoginViewModel()
@@ -33,6 +35,24 @@ class LoginViewModel {
             return
         } else {
             completion(nil)
+        }
+    }
+    
+    func biometricLoginVerification(completion: @escaping (Bool, String?, String?) -> Void) {
+        DispatchQueue.global().async {
+            self.bsLogin.authenticationProcess { (response, warningReason, warningMessage) in
+                if response {
+                    DispatchQueue.main.async {
+                        completion(response, nil, nil)
+                    }
+                } else {
+                    guard let warningReason = warningReason else { return }
+                    guard let warningMessage = warningMessage else { return }
+                    DispatchQueue.main.async {                    
+                        completion(response, warningReason, warningMessage)
+                    }
+                }
+            }
         }
     }
     

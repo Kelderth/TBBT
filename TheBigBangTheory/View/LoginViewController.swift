@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
 
         usernameLabel.becomeFirstResponder()
         
-        touchIDStatus()
+        biometricAuthenticationON()
     }
     
     @IBAction func userAuthenticity(_ sender: UIButton) {
@@ -43,6 +43,7 @@ class LoginViewController: UIViewController {
 
         if buttonLabel == "Sign in with TouchID" {
             defaults.set(true, forKey: "UseTouchID")
+//            defaults.set(passwordLabel.text, forKey: "userPassword")
             touchIDButton.setTitle("Disable TouchID", for: .normal)
         } else {
             defaults.set(false, forKey: "UseTouchID")
@@ -51,11 +52,21 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func biometricAuthenticationON() {
+        touchIDStatus()
+    }
+    
     func touchIDStatus() {
         let temporal = defaults.bool(forKey: "UseTouchID")
         if temporal {
             touchIDButton.setTitle("Disable TouchID", for: .normal)
-            warningMessage(message: "TouchID ON!")
+//            warningMessage(message: "TouchID ON!")
+            LoginViewModel.shared.biometricLoginVerification { (loginResponse, warningTitle, warningMessage) in
+                print("just messing arround with Biometrics")
+                if loginResponse {
+                    self.appAccess()
+                }
+            }
         } else {
             touchIDButton.setTitle("Sign in with TouchID", for: .normal)
         }

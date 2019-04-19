@@ -16,6 +16,7 @@
 		044B1C24225C3EC50006D3EA /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B1C23225C3EC50006D3EA /* NetworkService.swift */; };
 		044B1C27225C497D0006D3EA /* TBBTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B1C26225C497D0006D3EA /* TBBTViewModel.swift */; };
 		044B1C29225DA1690006D3EA /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B1C28225DA1690006D3EA /* ItemTableViewCell.swift */; };
+		04ACC36C226823660082345A /* BiometricRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ACC36B226823660082345A /* BiometricRecognitionService.swift */; };
 		04FBDBEC22602C7500F3A558 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBDBEB22602C7500F3A558 /* CacheService.swift */; };
 		04FBDBEE22603B8700F3A558 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FBDBED22603B8700F3A558 /* Default-568h@2x.png */; };
 		04FBDBF022603E0400F3A558 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBDBEF22603E0400F3A558 /* DetailsViewController.swift */; };
@@ -36,6 +37,7 @@
 		044B1C23225C3EC50006D3EA /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		044B1C26225C497D0006D3EA /* TBBTViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBBTViewModel.swift; sourceTree = "<group>"; };
 		044B1C28225DA1690006D3EA /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		04ACC36B226823660082345A /* BiometricRecognitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricRecognitionService.swift; sourceTree = "<group>"; };
 		04FBDBEB22602C7500F3A558 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		04FBDBED22603B8700F3A558 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		04FBDBEF22603E0400F3A558 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				044B1C23225C3EC50006D3EA /* NetworkService.swift */,
 				04FBDBEB22602C7500F3A558 /* CacheService.swift */,
 				04FBDBF12263905300F3A558 /* String+HtmlToStringService.swift */,
+				04ACC36B226823660082345A /* BiometricRecognitionService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04ACC36C226823660082345A /* BiometricRecognitionService.swift in Sources */,
 				04FBDBF22263905300F3A558 /* String+HtmlToStringService.swift in Sources */,
 				044B1C21225AD9FE0006D3EA /* TBBTModel.swift in Sources */,
 				04FBDBF62263A36C00F3A558 /* LoginViewModel.swift in Sources */,
