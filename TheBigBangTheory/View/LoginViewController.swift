@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
         usernameLabel.becomeFirstResponder()
         
         biometricAuthenticationON()
+        
+        passwordLabel.resignFirstResponder()
     }
     
     @IBAction func userAuthenticity(_ sender: UIButton) {
@@ -96,5 +98,9 @@ class LoginViewController: UIViewController {
     func appAccess() {
         performSegue(withIdentifier: "userVerified", sender: self)
     }
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
 }
