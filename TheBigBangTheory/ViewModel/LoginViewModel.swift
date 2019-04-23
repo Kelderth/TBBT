@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct KeychainConfiguration {
+    static let serviceName: String = "TheBigBangTheory"
+    static let accessGroup: String? = nil
+}
+
 class LoginViewModel {
     let bsLogin = BiometricRecognition()
     
@@ -19,11 +24,11 @@ class LoginViewModel {
         case mismatchValues = "Invalid Credentials."
     }
     
+    // MARK: - Singleton
     static let shared = LoginViewModel()
-    
     private init() {}
     
-    func checkLoginKeys(for user: String?, password: String?, completion: @escaping (String?) -> Void) {
+    func checkLogin(user: String?, password: String?, completion: @escaping (String?) -> Void) {
         guard let user = user else { return }
         guard let password = password else { return }
         
@@ -38,18 +43,38 @@ class LoginViewModel {
         }
     }
     
-    func biometricLoginVerification(completion: @escaping (Bool, String?, String?) -> Void) {
+    func biometricAvailable() -> Bool {
+        return bsLogin.canEvaluatePolicy()
+    }
+    
+    func biometricTypeAvailable() -> BiometricType {
+        return bsLogin.biometricType()
+    }
+    
+    func biometricImageName() -> String {
+        let option = biometricTypeAvailable()
+        let imageAssetName: String
+        switch option {
+        case .faceID:
+            imageAssetName = "faceid"
+        default:
+            imageAssetName = "touchid"
+        }
+        
+        return imageAssetName
+    }
+    
+    func biometricLoginVerification(completion: @escaping (Bool, String?) -> Void) {
         DispatchQueue.global().async {
-            self.bsLogin.authenticationProcess { (response, warningReason, warningMessage) in
+            self.bsLogin.authenticationProcess { (response, warningMessage) in
                 if response {
                     DispatchQueue.main.async {
-                        completion(response, nil, nil)
+                        completion(response, nil)
                     }
                 } else {
-                    guard let warningReason = warningReason else { return }
                     guard let warningMessage = warningMessage else { return }
                     DispatchQueue.main.async {                    
-                        completion(response, warningReason, warningMessage)
+                        completion(response, warningMessage)
                     }
                 }
             }

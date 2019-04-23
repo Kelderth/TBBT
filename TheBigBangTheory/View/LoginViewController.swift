@@ -22,12 +22,19 @@ class LoginViewController: UIViewController {
         usernameLabel.becomeFirstResponder()
         
         biometricAuthenticationON()
+        biometricTypeAvailable()
         
         passwordLabel.resignFirstResponder()
+        
+        if LoginViewModel.shared.biometricAvailable() {
+            enableBiometrics()
+        } else {
+            disableBiometrics()
+        }
     }
     
     @IBAction func userAuthenticity(_ sender: UIButton) {
-        LoginViewModel.shared.checkLoginKeys(for: usernameLabel.text, password: passwordLabel.text) { (response) in
+        LoginViewModel.shared.checkLogin(user: usernameLabel.text, password: passwordLabel.text) { (response) in
             if let response = response {
                 self.warningMessage(title: "Login Message", message: response)
                 return
@@ -52,13 +59,26 @@ class LoginViewController: UIViewController {
     
     func enableBiometrics() {
         defaults.set(true, forKey: "UseTouchID")
+        touchIDButton.setImage(UIImage(named: LoginViewModel.shared.biometricImageName()+"_on"), for: .normal)
         touchIDButton.setTitle("Disable TouchID / FaceID", for: .normal)
     }
     
     func disableBiometrics() {
         defaults.set(false, forKey: "UseTouchID")
+        touchIDButton.setImage(UIImage(named: LoginViewModel.shared.biometricImageName()+"_off"), for: .normal)
         touchIDButton.setTitle("Sign in with TouchID / FaceID", for: .normal)
     }
+    
+    func biometricTypeAvailable() {
+        switch LoginViewModel.shared.biometricTypeAvailable() {
+        case .faceID:
+            touchIDButton.setImage(UIImage(named: "faceid_off"), for: .normal)
+        default:
+            touchIDButton.setImage(UIImage(named: "touchid_off"), for: .normal)
+        }
+        
+    }
+    
     func biometricAuthenticationON() {
         touchIDStatus()
     }
@@ -67,15 +87,13 @@ class LoginViewController: UIViewController {
         let temporal = defaults.bool(forKey: "UseTouchID")
         if temporal {
             touchIDButton.setTitle("Disable TouchID / FaceID", for: .normal)
-            LoginViewModel.shared.biometricLoginVerification { (loginResponse, warningTitle, warningMessage) in
-                print("just messing arround with Biometrics")
+            LoginViewModel.shared.biometricLoginVerification { (loginResponse, warningMessage) in
                 if loginResponse {
                     self.appAccess()
                 } else {
-                    guard let warningTitle = warningTitle else { return }
                     guard let warningMessage = warningMessage else { return }
-                    self.warningMessage(title: warningTitle, message: warningMessage)
-                    if warningTitle == "Biometry unavailable" {
+                    self.warningMessage(title: "Touch ID - Message", message: warningMessage)
+                    if warningMessage == "Touch ID / Face ID not available." {
                         self.disableBiometrics()
                         self.touchIDButton.isHidden = true
                     }

@@ -41,9 +41,13 @@
                                     <action selector="userAuthenticity:" destination="rfL-kb-Xw6" eventType="touchUpInside" id="3ze-zs-2P7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K7-zu-gH3">
-                                <rect key="frame" x="80" y="252" width="215" height="30"/>
-                                <state key="normal" title="Sign in with TouchID"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K7-zu-gH3">
+                                <rect key="frame" x="154.5" y="252" width="66" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="D4U-CT-JIW"/>
+                                    <constraint firstAttribute="height" constant="67" id="yCd-WN-FbH"/>
+                                </constraints>
+                                <state key="normal" image="touchid_off"/>
                                 <connections>
                                     <action selector="activateTouchID:" destination="rfL-kb-Xw6" eventType="touchUpInside" id="dC6-fu-PeT"/>
                                 </connections>
@@ -53,10 +57,9 @@
                         <constraints>
                             <constraint firstItem="fr8-0R-dZ9" firstAttribute="top" secondItem="cXF-b1-pUn" secondAttribute="bottom" constant="40" id="CPB-3L-h1P"/>
                             <constraint firstItem="fr8-0R-dZ9" firstAttribute="leading" secondItem="Idb-F0-IeC" secondAttribute="leading" constant="60" id="EAs-yS-mZo"/>
-                            <constraint firstItem="Idb-F0-IeC" firstAttribute="trailing" secondItem="0K7-zu-gH3" secondAttribute="trailing" constant="80" id="LJM-s8-8gU"/>
-                            <constraint firstItem="0K7-zu-gH3" firstAttribute="leading" secondItem="Idb-F0-IeC" secondAttribute="leading" constant="80" id="LQ3-sI-Fi9"/>
                             <constraint firstItem="Idb-F0-IeC" firstAttribute="bottom" secondItem="R07-Xw-qN2" secondAttribute="bottom" constant="60" id="MOd-fG-ejs"/>
                             <constraint firstItem="cXF-b1-pUn" firstAttribute="top" secondItem="Idb-F0-IeC" secondAttribute="top" constant="80" id="Nzi-YP-76Q"/>
+                            <constraint firstItem="0K7-zu-gH3" firstAttribute="centerX" secondItem="Idb-F0-IeC" secondAttribute="centerX" id="czs-NX-7vp"/>
                             <constraint firstItem="Idb-F0-IeC" firstAttribute="trailing" secondItem="fr8-0R-dZ9" secondAttribute="trailing" constant="60" id="nw3-4F-Ag3"/>
                             <constraint firstItem="R07-Xw-qN2" firstAttribute="leading" secondItem="Idb-F0-IeC" secondAttribute="leading" constant="60" id="q06-7v-QZ6"/>
                             <constraint firstItem="Idb-F0-IeC" firstAttribute="trailing" secondItem="cXF-b1-pUn" secondAttribute="trailing" constant="60" id="q3A-Ar-GxQ"/>
@@ -119,4 +122,7 @@
             <point key="canvasLocation" x="328.80000000000001" y="-635.53223388305855"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="touchid_off" width="160" height="160"/>
+    </resources>
 </document>
