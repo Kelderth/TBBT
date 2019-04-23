@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 struct KeychainConfiguration {
     static let serviceName: String = "TheBigBangTheory"
@@ -15,34 +16,85 @@ struct KeychainConfiguration {
 
 class LoginViewModel {
     let bsLogin = BiometricRecognition()
-    
-    private let username: String = "admin"
-    private let password: String = "admin"
+    let defaults = UserDefaults.standard
+    private let createLoginButtonTag = 0
+    private let loginButtonTag = 1
     
     private enum LoginWarnings: String {
-        case missedValue = "Username or Password not found."
-        case mismatchValues = "Invalid Credentials."
+        case valueNotFound = "Username or Password not found."
+        case invalidCredential = "Invalid Credentials."
     }
     
     // MARK: - Singleton
     static let shared = LoginViewModel()
     private init() {}
     
-    func checkLogin(user: String?, password: String?, completion: @escaping (String?) -> Void) {
-        guard let user = user else { return }
-        guard let password = password else { return }
+    func checkUserExist() -> Bool {
+        return defaults.bool(forKey: "hasLoginKey")
+    }
+    
+    func loginButtonTagValue() -> Int {
+        if checkUserExist() {
+            return loginButtonTag
+        }
+        return createLoginButtonTag
+    }
+    
+    func loginKeyEnabled() {
+        defaults.set(true, forKey: "hasLoginKey")
+    }
+    
+    func loginKeyDisabled() {
+        defaults.set(false, forKey: "hasLoginKey")
+    }
+    
+    func setUsernameDefaults(username: String) {
+        defaults.set(username, forKey: "username")
+    }
+    
+    func getUsernameDefaults() -> String {
+        return defaults.value(forKey: "username") as! String
+    }
+    
+    func setUseBiometricDefaults() {
+        defaults.set(true, forKey: "UseTouchID")
+    }
+    
+    func unsetUseBiometricDefaults() {
+        defaults.set(false, forKey: "UseTouchID")
+    }
+    
+    func getUseBiometricDefaults() -> Bool {
+        return defaults.bool(forKey: "UseTouchID")
+    }
+    
+    func checkLogin(user: String?, password: String?, completion: @escaping (Bool, String?) -> Void) {
+        guard let username = defaults.value(forKey: "username") as? String else { return }
         
-        if user == "" || password == "" {
-            completion(LoginWarnings.missedValue.rawValue)
-            return
-        } else if user != self.username || password != self.password {
-            completion(LoginWarnings.mismatchValues.rawValue)
-            return
-        } else {
-            completion(nil)
+        guard let user = user else { completion(false, LoginWarnings.valueNotFound.rawValue); return }
+        guard let password = password else { completion(false, LoginWarnings.valueNotFound.rawValue); return }
+        
+        do {
+            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: username, accessGroup: KeychainConfiguration.accessGroup)
+            let keychainPassword = try passwordItem.readPassword()
+            
+            if user.isEmpty || password.isEmpty {
+                completion(false, LoginWarnings.valueNotFound.rawValue)
+                return
+            } else if user != username || password != keychainPassword {
+                completion(false, LoginWarnings.invalidCredential.rawValue)
+                return
+            }
+            completion(password == keychainPassword, nil)
+        } catch {
+            fatalError("Error reading password from keychain - \(error)")
         }
     }
     
+}
+
+// MARK: - Biometrics
+extension LoginViewModel {
     func biometricAvailable() -> Bool {
         return bsLogin.canEvaluatePolicy()
     }
@@ -73,12 +125,11 @@ class LoginViewModel {
                     }
                 } else {
                     guard let warningMessage = warningMessage else { return }
-                    DispatchQueue.main.async {                    
+                    DispatchQueue.main.async {
                         completion(response, warningMessage)
                     }
                 }
             }
         }
     }
-    
 }

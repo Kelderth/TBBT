@@ -71,6 +71,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="LogIn" id="pMW-u9-aql"/>
                     <connections>
+                        <outlet property="loginButton" destination="R07-Xw-qN2" id="hBp-lk-rM8"/>
                         <outlet property="passwordLabel" destination="fr8-0R-dZ9" id="yGX-8N-mhd"/>
                         <outlet property="touchIDButton" destination="0K7-zu-gH3" id="kpu-cR-Beu"/>
                         <outlet property="usernameLabel" destination="cXF-b1-pUn" id="VU7-86-bZB"/>
